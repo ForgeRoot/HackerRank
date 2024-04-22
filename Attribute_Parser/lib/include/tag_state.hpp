@@ -12,12 +12,17 @@ public:
     virtual ~TagState() {}
 };
 
-    class InitialTagState : public TagState {
+    class NameTagState : public TagState {
     public:
         void handleToken(TagHandler& handler, const std::string& token) override;
     };
 
     class KeyTagState: public TagState {
+    public:
+        void handleToken(TagHandler& handler, const std::string& token) override;
+    };
+
+    class EqualTagState : public TagState {
     public:
         void handleToken(TagHandler& handler, const std::string& token) override;
     };

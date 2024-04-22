@@ -14,12 +14,14 @@ public:
     Tag();
     ~Tag();
     void handleInput(const std::string& hrml_line);
+    void setName(const std::string& name) override;
     void setKey(const std::string& key) override;
     void setValue(const std::string& value) override;
     void commitAttribute() override;
     void changeState(TagState* new_state);
 
 private:
+    std::string name_;
     std::unordered_map<std::string, std::string> attributes_;
     TagState* current_state_;
     std::string current_key_;

@@ -7,6 +7,7 @@ class TagState;
 
 class TagHandler {
 public:
+    virtual void setName(const std::string& name) = 0;
     virtual void setKey(const std::string& key) = 0;
     virtual void setValue(const std::string& value) = 0;
     virtual void commitAttribute() = 0;

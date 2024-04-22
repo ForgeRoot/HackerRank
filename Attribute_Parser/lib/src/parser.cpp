@@ -3,8 +3,7 @@
 Parser::Parser(){};
 
 void Parser::createHRMLTags(const std::vector<std::string> hrml_lines_content){
-    
-    for (const std::string& hrml_line: hrml_lines_content){
+        for (const std::string& hrml_line: hrml_lines_content){
         tags_
         
     }

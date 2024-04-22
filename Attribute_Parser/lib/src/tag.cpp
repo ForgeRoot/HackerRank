@@ -18,6 +18,10 @@ void Tag::setKey(const std::string& key) {
     current_key_ = key;
 }
 
+void Tag::setName(const std::string& name){
+    name_ = name;
+}
+
 void Tag::setValue(const std::string& value) {
     current_value_ = value;
 }
