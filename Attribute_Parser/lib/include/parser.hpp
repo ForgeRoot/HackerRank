@@ -8,6 +8,7 @@
 #include <sstream>
 #include <format>
 #include <tag.hpp>
+#include <algorithm>
 
 
 struct HRMLParserContent {
@@ -20,11 +21,15 @@ class Parser{
 public:
     Parser(); 
 
-    void createHRMLTags(const std::vector<std::string> hrml_lines_content);
+    void parse(const std::vector<std::string> contents);
 
 private:
-    std::vector<Tag> tags_;
-
+    std::vector<std::unique_ptr<Tag>> tags_;
+    void iterateThroughHRMLLines(const std::vector<std::string> hrml_lines_content);
+    void checkTagsVector(const std::vector<std::string> hrml_lines_content);
+    void createHRMLTags(const std::vector<std::string> hrml_lines_content);
+    void checkNameInTags(const std::string name);
+    std::string getClosingTagName(const std::string hrml_line);
     HRMLParserContent getHRMLParserContent(const std::vector<std::string> contents);
     HRMLParserContent splitOriginalContentsIntoHRMLParserContent(const std::vector<std::string> contents, const size_t hrml_lines);
     size_t getCountOfHrmlLines(std::string first_line);

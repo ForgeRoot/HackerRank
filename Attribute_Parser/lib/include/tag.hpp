@@ -20,6 +20,10 @@ public:
     void commitAttribute() override;
     void changeState(TagState* new_state);
 
+    void printTag();
+
+    std::string getName() const;
+
 private:
     std::string name_;
     std::unordered_map<std::string, std::string> attributes_;

@@ -2,6 +2,7 @@
 #define HRMLPARSER_LIB_TAG_STATE_H_
 
 #include <string>
+#include <iostream>
 #include <tag_handler.hpp>
 
 class TagHandler;

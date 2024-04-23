@@ -1,6 +1,6 @@
 #include <tag.hpp>
 
-Tag::Tag(): current_state_(new InitialTagState) {}
+Tag::Tag(): current_state_(new NameTagState) {}
 
 Tag::~Tag() {
     delete current_state_;
@@ -28,11 +28,29 @@ void Tag::setValue(const std::string& value) {
 
 void Tag::commitAttribute() {
     attributes_[current_key_] = current_value_;
+    //print the attributes
+    
 }
 
 void Tag::changeState(TagState* new_state){
     delete current_state_;
     current_state_ = new_state;
+}
+
+void Tag::printTag(){
+    if (name_.empty() && attributes_.empty()) {
+        std::cout << "Empty tag detected." << std::endl;
+        return;
+    }
+    std::cout << "name: " << name_ << std::endl;
+    std::cout << "attributes: " << std::endl;
+    for (const auto& attribute: attributes_){
+        std::cout << "\tKey: " << attribute.first << ", Value: " << attribute.second << std::endl;
+    }
+}
+
+std::string Tag::getName() const{
+    return name_;
 }
 
 
