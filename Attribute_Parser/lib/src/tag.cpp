@@ -53,4 +53,10 @@ std::string Tag::getName() const{
     return name_;
 }
 
-
+std::string Tag::getAttribute(std::string key) const{
+    auto it = attributes_.find(key);
+    if (it != attributes_.end()) {
+        return it->second;
+    }
+    return "Not Found!";
+}

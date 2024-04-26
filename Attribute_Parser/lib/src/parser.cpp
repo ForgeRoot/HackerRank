@@ -6,11 +6,9 @@ void Parser::parse(const std::vector<std::string> contents){
     HRMLParserContent hrml_content = getHRMLParserContent(contents);
 
     iterateThroughHRMLLines(hrml_content.HRML_lines);
-    for (auto& tag: tags_){
-        tag->printTag();   
-    }
-
+    iterateThroughQueryLines(hrml_content.Query_lines);
 }
+
 
 void Parser::iterateThroughHRMLLines(const std::vector<std::string> hrml_lines_content){
     const std::vector<std::string> hrml_open_lines(hrml_lines_content.begin(), hrml_lines_content.begin() + hrml_lines_content.size() / 2);
@@ -50,6 +48,28 @@ void Parser::iterateThroughHRMLLines(const std::vector<std::string> hrml_lines_c
             auto tag = std::make_unique<Tag>(); 
             tag->handleInput(hrml_line);
             tags_.push_back(std::move(tag));
+        }
+    }
+
+void Parser::iterateThroughQueryLines(const std::vector<std::string> query_lines_content){
+    for (const std::string query_line: query_lines_content){
+        createQuery(query_line);
+    }
+    parseQueries();
+
+}
+
+    void Parser::createQuery(const std::string query_line){
+        auto query = std::make_unique<Query>();
+        query->handleInput(query_line);
+        queries_.push_back(std::move(query));
+        
+    }
+
+    void Parser::parseQueries(){
+        for (auto & query: queries_){
+            std::string attribute = query->getAttribute(tags_);
+            std::cout << attribute << std::endl;
         }
     }
 

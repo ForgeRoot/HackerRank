@@ -23,6 +23,7 @@ public:
     void printTag();
 
     std::string getName() const;
+    std::string getAttribute(std::string key) const;
 
 private:
     std::string name_;

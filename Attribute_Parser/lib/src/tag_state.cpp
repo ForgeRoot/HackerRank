@@ -21,10 +21,10 @@ void EqualTagState::handleToken(TagHandler& handler, const std::string& token){
 void ValueTagState::handleToken(TagHandler& handler, const std::string& token){
     std::cout << "Handling Value State with Token: " << token << std::endl;
     if (token.back() == '>'){
-        handler.setValue(token.substr(0, token.size() - 1));
+        handler.setValue(token.substr(1, token.size() - 3));
         handler.commitAttribute();
     } else {
-        handler.setValue(token);
+        handler.setValue(token.substr(1, token.size() - 2));
         handler.commitAttribute();
         handler.changeState(new KeyTagState());
     }

@@ -8,6 +8,7 @@
 #include <sstream>
 #include <format>
 #include <tag.hpp>
+#include <query.hpp>
 #include <algorithm>
 
 
@@ -25,10 +26,14 @@ public:
 
 private:
     std::vector<std::unique_ptr<Tag>> tags_;
+    std::vector<std::unique_ptr<Query>> queries_;
     void iterateThroughHRMLLines(const std::vector<std::string> hrml_lines_content);
+    void iterateThroughQueryLines(const std::vector<std::string> query_lines_content);
     void checkTagsVector(const std::vector<std::string> hrml_lines_content);
     void createHRMLTags(const std::vector<std::string> hrml_lines_content);
     void checkNameInTags(const std::string name);
+    void createQuery(const std::string query_line);
+    void parseQueries();
     std::string getClosingTagName(const std::string hrml_line);
     HRMLParserContent getHRMLParserContent(const std::vector<std::string> contents);
     HRMLParserContent splitOriginalContentsIntoHRMLParserContent(const std::vector<std::string> contents, const size_t hrml_lines);
